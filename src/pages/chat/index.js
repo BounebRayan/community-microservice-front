@@ -4,6 +4,7 @@ import SendMessage from './send-message';
 import RoomAndUsersColumn from './room-and-users';
 
 const Chat = ({ username, room, socket }) => {
+  console.log(socket.room);
   return (
     <div className={styles.chatContainer}>
        <RoomAndUsersColumn socket={socket} username={username} room={room} />

@@ -6,7 +6,6 @@ const Messages = ({ socket }) => {
 
   const messagesColumnRef = useRef(null); // Add this
 
-  // Runs whenever a socket event is recieved from the server
   useEffect(() => {
     socket.on('receive_message', (data) => {
       console.log(data);
@@ -28,8 +27,7 @@ const Messages = ({ socket }) => {
   useEffect(() => {
     // Last 100 messages sent in the chat room (fetched from the db in backend)
     socket.on('last_100_messages', (last100Messages) => {
-      console.log('Last 100 messages:', JSON.parse(last100Messages));
-      last100Messages = JSON.parse(last100Messages);
+      console.log('Last 100 messages:', last100Messages);
       // Sort these messages by __createdtime__
       last100Messages = sortMessagesByDate(last100Messages);
       setMessagesReceived((state) => [...last100Messages, ...state]);
